@@ -7,12 +7,18 @@
             Compiles Projects
             Runs 'tasks'
             Manages Dependencies
+        -- elixir
 
         -- mix new projectname
 
         -- iex -S mix        -compile project and launch interactive elixir shell
 
         -- recompile         -recompile elixir shell
+
+        Destructuring
+
+          deck = Cards.create_deck()
+          { hand, rest_of_deck } = Cards.deal(deck, 5)
 
 ## Installation
 
