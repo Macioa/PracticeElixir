@@ -25,6 +25,9 @@ defmodule Cards do
     end
   end
 
+  @doc """
+    Selects `hand_size` cards from the deck
+  """
   def deal(deck, hand_size) do
     Enum.split(deck, hand_size)
   end
