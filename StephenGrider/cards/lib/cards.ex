@@ -33,7 +33,14 @@ defmodule Cards do
     Enum.member?(deck, card)
   end
 
+  def save(deck, filename) do
+    binary = :erlang.term_to_binary(deck)
+    File.write(filename, binary)
+  end
+
   def hello do
     :world
   end
+
+
 end
