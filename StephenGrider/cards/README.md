@@ -20,6 +20,7 @@
 
           deck = Cards.create_deck()
           { hand, rest_of_deck } = Cards.deal(deck, 5)
+          * add _ in front of variable if unused
 
 ## Installation
 

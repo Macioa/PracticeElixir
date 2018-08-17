@@ -39,8 +39,10 @@ defmodule Cards do
   end
 
   def read(filename) do
-    {status, binary} = File.read(filename)
-    :erlang.binary_to_term binary
+    case File.read(filename) do
+      {:ok, binary}-> :erlang.binary_to_term binary
+      {:error, _reason}-> "Could not find #{filename}"
+    end
   end
 
   def hello do
