@@ -13,7 +13,7 @@ defmodule Cards do
       :world
 
   """
-  @moduledoc """
+  @doc """
     Creates and returns a set of strings representing a deck of playing cards.
   """
   def create_deck do
