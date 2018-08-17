@@ -14,6 +14,7 @@
         -- iex -S mix        -compile project and launch interactive elixir shell
 
         -- recompile         -recompile elixir shell
+        {status, binary} = file.read('file_name') - read binary with pattern matching
 
         Destructuring
 
