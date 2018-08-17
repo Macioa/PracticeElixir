@@ -13,6 +13,9 @@ defmodule Cards do
       :world
 
   """
+  @moduledoc """
+    Creates and returns a set of strings representing a deck of playing cards.
+  """
   def create_deck do
     values = ["Ace","Two","Three","Four","Five","Six","Seven","Eight","Nine","Ten","Jack","Queen","King"]
     suits = ["Spades","Hearts","Diamonds","Clubs"]
