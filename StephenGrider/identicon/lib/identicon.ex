@@ -1,7 +1,7 @@
 defmodule Identicon do
     @moduledoc """
-  Documentation for Identicon.
-  """
+      Documentation for Identicon.
+    """
   def main(input) do
     input
     |> hash_input
@@ -10,6 +10,7 @@ defmodule Identicon do
     |> filter_odd_squares
     |> build_pixel_map
     |> draw_image
+    |> save_image(input)
   end
 
   def draw_image(%Identicon.Image{color: color, pixel_map: pixel_map}) do
@@ -21,6 +22,10 @@ defmodule Identicon do
     end
 
     :egd.render(image)
+  end
+
+  def save_image(image, input) do
+    File.write("#{input}.png", image)
   end
 
   def build_pixel_map(%Identicon.Image{grid: grid} = image) do
@@ -36,8 +41,8 @@ defmodule Identicon do
   end
 
     @doc """
-    Using image hex, break into 3 columns, mirror each row, then return a single list with indexes
-  """
+          Using image hex, break into 3 columns, mirror each row, then return a single list with indexes
+    """
   def build_grid(%Identicon.Image{hex: hex} = image) do
     grid =
     hex
@@ -55,8 +60,20 @@ defmodule Identicon do
     %Identicon.Image{image | grid: grid}
   end
 
-  def pick_color([r,g,b| tail]=image) do
-    %Identicon.Image{ image | hex: tail, color: {r,g,b} }
+  @doc """
+  Hash input
+  ## Examples
+      iex> Identicon.pick_color([164, 140, 170, 144, 146, 152, 141, 117, 180, 193, 241, 190, 132, 212, 64, 88])
+      %Identicon.Image{
+        color: {164, 140, 170},
+        grid: nil,
+        hex: [144, 146, 152, 141, 117, 180, 193, 241, 190, 132, 212, 64, 88],
+        pixel_map: nil
+      }
+  """
+  def pick_color(hex) do
+    [r,g,b | tail] = hex
+    %Identicon.Image{ hex: tail,  color: {r,g,b} }
   end
 
   def mirror_row(row) do
@@ -64,8 +81,15 @@ defmodule Identicon do
     row ++ [second, first]
   end
 
+
+  @doc """
+  Hash input
+  ## Examples
+      iex> Identicon.hash_input('sampleinput')
+      [164, 140, 170, 144, 146, 152, 141, 117, 180, 193, 241, 190, 132, 212, 64, 88]
+  """
   def hash_input(input) do
-    hex = :crypto.hash(:md5, input)
+    :crypto.hash(:md5, input)
     |> :binary.bin_to_list
   end
 

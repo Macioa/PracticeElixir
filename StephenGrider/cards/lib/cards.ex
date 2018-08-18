@@ -19,11 +19,11 @@ defmodule Cards do
   @doc """
     Selects `hand_size` cards from the deck
 
-      ##Examples
-        iex> deck = Cards.create_deck
-        iex> {hand, _deck} = Cards.deal(deck, 1)
-        iex> hand
-        ["Ace of Spades"]
+    ##Examples
+      iex> deck = Cards.create_deck
+      iex> {hand, _deck} = Cards.deal(deck, 1)
+      iex> hand
+      ["Ace of Spades"]
   """
   def deal(deck, hand_size) do
     Enum.split(deck, hand_size)
