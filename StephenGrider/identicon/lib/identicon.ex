@@ -8,11 +8,24 @@ defmodule Identicon do
     |> pick_color
     |> build_grid
   end
-
+    @doc """
+    Using image hex, break into 3 columns, mirror each row, then return a single list with indexes
+  """
   def build_grid(%Identicon.Image{hex: hex} = image) do
+    grid =
     hex
-    |> Enum.chunk(3)
-    |> Enum.map(&mirror_row/1) #arg = reference to mirror_row function, use instance of mirror_row that takes 1 argument
+      |> Enum.chunk(3)
+      |> Enum.map(&mirror_row/1) #arg = reference to mirror_row function, use instance of mirror_row that takes 1 argument
+      |> List.flatten
+      |> Enum.with_index
+    %Identicon.Image{image | grid: grid}
+  end
+
+  def filter_odd_square(%Identicon.Image{grid: grid}=image) do
+    Enum.filter grid, fn({value, _index})->
+      rem(value,2)
+    end
+    %Identicon.Image{image | grid: grid}
   end
 
   def pick_color([r,g,b| tail]=image) do
@@ -20,7 +33,7 @@ defmodule Identicon do
   end
 
   def mirror_row(row) do
-    [first, second | _tail] = row
+    [first, second | _third] = row
     row ++ [second, first]
   end
 
