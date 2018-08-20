@@ -12,11 +12,14 @@ defmodule Discuss.Router do
   pipeline :api do
     plug :accepts, ["json"]
   end
+ # \ ller, :index
+  end
 
   scope "/", Discuss do
-    pipe_through :browser # Use the default browser stack
+    pipe_through: browser #default browser
 
     get "/", PageController, :index
+    get "/topics/new", TopicController, :new
   end
 
   # Other scopes may use custom stacks.
