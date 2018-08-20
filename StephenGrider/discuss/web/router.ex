@@ -13,10 +13,10 @@ defmodule Discuss.Router do
     plug :accepts, ["json"]
   end
  # \ ller, :index
-  end
+  #end
 
   scope "/", Discuss do
-    pipe_through: browser #default browser
+    pipe_through :browser #default browser
 
     get "/", PageController, :index
     get "/topics/new", TopicController, :new
