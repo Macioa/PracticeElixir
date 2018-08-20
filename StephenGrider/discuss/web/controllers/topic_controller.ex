@@ -11,8 +11,8 @@ defmodule Discuss.TopicController do
   alias Discuss.Topic
 
   def new(connection, params) do
-    struct = %Topic{}
-    params = %{}
-    changeset = Topic.changeset(struct, params)
+    changeset = Topic.changeset(%Topic{}, %{})
+
+    render connection, "new.html"
   end
 end
