@@ -2,6 +2,8 @@ defmodule Discuss.Repo.Migrations.AddTopics do
   use Ecto.Migration
 
   def change do
-    add :title, :string
+    create table("weather") do
+      add :title, :string, size:40
+    end
   end
 end
