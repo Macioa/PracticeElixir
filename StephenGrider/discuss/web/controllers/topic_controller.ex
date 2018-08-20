@@ -13,6 +13,6 @@ defmodule Discuss.TopicController do
   def new(connection, params) do
     changeset = Topic.changeset(%Topic{}, %{})
 
-    render connection, "new.html"
+    render connection, "new.html", changeset: changeset
   end
 end
