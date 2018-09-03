@@ -3,7 +3,7 @@ defmodule Mixshoulders.UserSocket do
 
   ## Channels
   # channel "room:*", Mixshoulders.RoomChannel
-
+  channel "room:*", HelloWeb.RoomChannel
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket,
     timeout: 45_000
