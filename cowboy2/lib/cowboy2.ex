@@ -1,4 +1,5 @@
 defmodule Cowboy2 do
+  use Cowboy2.Router
   @moduledoc """
   Documentation for Cowboy2.
   """
